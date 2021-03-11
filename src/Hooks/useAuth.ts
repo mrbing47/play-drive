@@ -8,7 +8,7 @@ export default function useAuth() {
 	const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"];
 	const SCOPES = "https://www.googleapis.com/auth/drive.metadata.readonly";
 
-	const [signIn, setSignIn] = useState(false);
+	const [signIn, setSignIn] = useState({ status: false, contact: {} });
 	useEffect(() => {
 		gapi.load("client:auth2", initClient);
 	});
@@ -28,10 +28,11 @@ export default function useAuth() {
 
 	const updateSigninStatus = (isSignedIn: boolean) => {
 		if (isSignedIn) {
-			setSignIn(true);
+			setSignIn({ status: true, contact: gapi.auth2.getAuthInstance().currentUser.le.wt });
 			console.log(gapi.auth2.getAuthInstance().currentUser.le.wt);
+			console.trace();
 		} else {
-			setSignIn(false);
+			setSignIn({ status: false, contact: {} });
 		}
 	};
 

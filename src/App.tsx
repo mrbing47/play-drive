@@ -17,17 +17,10 @@ function App() {
 
 	return (
 		<div className="App">
-			{signIn ? (
-				<>
-					"YES"
-					<button onClick={handleSignOut}>Sign Out</button>
-					<Home />
-				</>
+			{!signIn.status ? (
+				<button onClick={handleSignIn}>Connect with Google Drive</button>
 			) : (
-				<>
-					"NO"
-					<button onClick={handleSignIn}>Sign In</button>
-				</>
+				<Home handleSignOut={handleSignOut} />
 			)}
 		</div>
 	);

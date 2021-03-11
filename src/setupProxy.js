@@ -6,6 +6,9 @@ module.exports = function (app) {
 		createProxyMiddleware({
 			target: "https://drive.google.com/",
 			changeOrigin: true,
+			headers: {
+				"Access-Control-Allow-Origin": "*",
+			},
 		})
 	);
 };
